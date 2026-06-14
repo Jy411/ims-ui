@@ -40,7 +40,7 @@ const button = document.getElementById("add-item");
 button.addEventListener("click", addItem);
 
 async function deleteItem(id) {
-  const url = `http://localhost:9000/items/${id}`;
+  const url = `${apiUrl}/items/${id}`;
   try {
     const response = await fetch(url, {
       method: "DELETE",
