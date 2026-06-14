@@ -1,5 +1,7 @@
+const apiUrl = "https://go-gin-hello-world-mapln1bh9-j-projects3-3.vercel.app";
+
 async function addItem() {
-  const url = "http://localhost:9000/items";
+  const url = `${apiUrl}/items`;
   const nameField = document.getElementById("item-name");
   const descriptionField = document.getElementById("item-description");
   const priceField = document.getElementById("item-price");
@@ -81,7 +83,7 @@ async function saveItem(id) {
   const priceInput = document.getElementById(`price-input-${id}`);
   const quantityInput = document.getElementById(`quantity-input-${id}`);
 
-  const url = `http://localhost:9000/items/${id}`;
+  const url = `${apiUrl}/items/${id}`;
   try {
     const response = await fetch(url, {
       method: "PUT",
@@ -173,7 +175,7 @@ function editItem(id) {
 }
 
 async function getData() {
-  const url = "http://localhost:9000/items";
+  const url = `${apiUrl}/items`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
