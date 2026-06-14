@@ -1,4 +1,4 @@
-const apiUrl = "https://go-gin-hello-world-j65gpoz5r-j-projects3-3.vercel.app";
+const apiUrl = process.env.API_URL;
 
 async function addItem() {
   const url = `${apiUrl}/items`;
