@@ -1,4 +1,4 @@
-const apiUrl = "https://go-gin-hello-world-mapln1bh9-j-projects3-3.vercel.app";
+const apiUrl = "https://go-gin-hello-world-j65gpoz5r-j-projects3-3.vercel.app";
 
 async function addItem() {
   const url = `${apiUrl}/items`;
