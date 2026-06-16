@@ -38,8 +38,8 @@ async function addItem() {
   }
 }
 
-const button = document.getElementById("add-item");
-button.addEventListener("click", addItem);
+// const button = document.getElementById("add-item");
+// button.addEventListener("click", addItem);
 
 async function deleteItem(id) {
   const url = `${apiUrl}/items/${id}`;
