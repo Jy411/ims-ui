@@ -28,9 +28,9 @@
     />
   </head>
 
-  <body class="container">
+  <body class="container min-vh-100 d-flex flex-column justify-content-center align-items-center gap-2">
       <div class="text-center">
-        <h1>Login</h1>
+        <h1>Inventory Management System</h1>
       </div>
 
       <div>
@@ -49,13 +49,16 @@
               required
             />
           </div>
-          <button id="login-btn" class="btn btn-primary">Login</button>
-          <button id="signup-btn" class="btn btn-secondary">Sign Up</button>
+          <div class="d-flex justify-content-between">
+            <button id="login-btn" class="btn btn-primary">Login</button>
+            <button id="signup-btn" class="btn btn-secondary">Sign Up</button>
+          </div>
+          <p id="error-message"></p>
         </form>
       </div>
     </div>
 
-`    <script
+    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
@@ -86,9 +89,17 @@
       const auth = getAuth(app);
 
       const signupBtn = document.getElementById("signup-btn");
-      signupBtn.addEventListener("click", async () => {
+      signupBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
+
+        // only sign up if email and password are provided
+        if (!email || !password) {
+          const errorMessageElement = document.getElementById("error-message");
+          errorMessageElement.textContent = "Please provide both email and password";
+          return;
+        }
 
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
@@ -99,14 +110,23 @@
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            alert(`Error: ${errorCode}, ${errorMessage}`);
+            const errorMessageElement = document.getElementById("error-message");
+            errorMessageElement.classList.add("text-bg-danger");
+            errorMessageElement.textContent = `${errorMessage}`;
           });
       });
 
       const loginBtn = document.getElementById("login-btn");
-      loginBtn.addEventListener("click", async () => {
+      loginBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
+
+        // only sign up if email and password are provided
+        if (!email || !password) {
+          alert("Please provide both email and password");
+          return;
+        }
 
         signInWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
@@ -117,7 +137,9 @@
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            alert(`Error: ${errorCode}, ${errorMessage}`);
+            const errorMessageElement = document.getElementById("error-message");
+            errorMessageElement.classList.add("text-bg-danger");
+            errorMessageElement.textContent = `${errorMessage}`;
           });
       });
 
