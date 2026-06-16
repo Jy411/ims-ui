@@ -3,10 +3,11 @@ const path = require("path");
 module.exports = {
   entry: {
     app: "./js/index.js",
+    dashboard: "./js/dashboard.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
     clean: true,
-    filename: "./js/index.js",
+    filename: "[name].[contenthash].bundle.js",
   },
 };
