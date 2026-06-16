@@ -30,7 +30,9 @@ async function addItem() {
       body: JSON.stringify(item),
     });
     if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
+      const errorText = await response.text();
+      alert(`Error: ${errorText}`);
+      throw new Error(`Response status: ${response.status} - ${errorText}`);
     }
     const result = await response.json();
 
