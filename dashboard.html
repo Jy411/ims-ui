@@ -132,6 +132,13 @@
             // An error happened.
           });
       });
+
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {;
+        } else {
+          // User is signed out
+          window.location.href = "index.html";
+        }
     </script>
   </body>
 </html>
