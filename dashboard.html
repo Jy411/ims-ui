@@ -50,28 +50,41 @@
           <!--Populated by JavaScript-->
         </tbody>
         <tfoot>
-          <tr>
-            <td>
-              <button id="add-item" class="btn btn-primary">Add Item</button>
-            </td>
-            <td>
-              <input type="text" id="item-name" placeholder="Name" />
-            </td>
-            <td>
-              <input
-                type="text"
-                id="item-description"
-                placeholder="Description"
-              />
-            </td>
-            <td>
-              <input type="number" id="item-price" placeholder="Price" />
-            </td>
-            <td>
-              <input type="number" id="item-quantity" placeholder="Quantity" />
-            </td>
-            <td></td>
-          </tr>
+          <form id="add-item-form">
+            <tr>
+              <td>
+                <button id="add-item" class="btn btn-primary">Add Item</button>
+              </td>
+              <td>
+                <input type="text" id="item-name" placeholder="Name" required />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  id="item-description"
+                  placeholder="Description"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  id="item-price"
+                  placeholder="Price"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  id="item-quantity"
+                  placeholder="Quantity"
+                  required
+                />
+              </td>
+              <td></td>
+            </tr>
+          </form>
         </tfoot>
       </table>
 
@@ -84,10 +97,7 @@
       crossorigin="anonymous"
     ></script>
     <script type="module">
-      // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
       import {
         getAuth,
         createUserWithEmailAndPassword,
@@ -96,7 +106,6 @@
         signOut,
       } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
 
-      // Your web app's Firebase configuration
       const firebaseConfig = {
         apiKey: "AIzaSyDTu16CzspeOGkdLD5nerKOIv3UUa6ZDmo",
         authDomain: "fir-app-58e77.firebaseapp.com",
@@ -106,30 +115,14 @@
         appId: "1:37149746243:web:44b174d9906e050066e0f6",
       };
 
-      // Initialize Firebase
       const app = initializeApp(firebaseConfig);
-
-      // Initialize Firebase Authentication and get a reference to the service
       const auth = getAuth(app);
-
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/auth.user
-          const uid = user.uid;
-          console.log(uid);
-        } else {
-          // User is signed out
-          // ...
-        }
-      });
 
       const signOutBtn = document.getElementById("sign-out-btn");
       signOutBtn.addEventListener("click", () => {
         signOut(auth)
           .then(() => {
             // Sign-out successful.
-            // Redirect to login page or home page
             window.location.href = "index.html";
           })
           .catch((error) => {

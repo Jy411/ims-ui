@@ -71,7 +71,6 @@ function cancelEdit(id, name, description, price, quantity) {
   priceCell.textContent = price;
   quantityCell.textContent = quantity;
 
-  // replace save/cancel buttons with edit/delete buttons
   const saveButton = document.getElementById(`save-item-${id}`);
   const cancelButton = document.getElementById(`cancel-item-${id}`);
 
@@ -167,7 +166,6 @@ function editItem(id) {
   editButton.replaceWith(saveButton);
   deleteButton.replaceWith(cancelButton);
 
-  // add event listeners to save/cancel buttons
   saveButton.addEventListener("click", () => saveItem(id));
   cancelButton.addEventListener("click", () =>
     cancelEdit(
@@ -187,7 +185,6 @@ async function getData() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // get userid from local storage or session storage
         Authorization: `${localStorage.getItem("token")}`,
       },
     });
@@ -196,7 +193,6 @@ async function getData() {
     }
 
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.error(error.message);
@@ -213,7 +209,6 @@ function createEditAndDeleteButtons(id) {
   editButton.className = "btn btn-primary";
   deleteButton.className = "btn btn-danger";
 
-  // add event listeners
   editButton.addEventListener("click", () => editItem(id));
   deleteButton.addEventListener("click", () => deleteItem(id));
 
