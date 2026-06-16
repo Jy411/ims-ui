@@ -8,7 +8,17 @@ module.exports = merge(common, {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./index.html",
+      filename: "index.html",
+      chunks: ["index"],
+      inject: "body",
     }),
+    new HtmlWebpackPlugin({
+      template: "./dashboard.html",
+      filename: "dashboard.html",
+      chunks: ["dashboard"],
+      inject: "body",
+    }),
+
     new CopyPlugin({
       patterns: [
         { from: "img", to: "img" },
@@ -18,7 +28,6 @@ module.exports = merge(common, {
         { from: "favicon.ico", to: "favicon.ico" },
         { from: "robots.txt", to: "robots.txt" },
         { from: "icon.png", to: "icon.png" },
-        { from: "dashboard.html", to: "dashboard.html" },
         { from: "404.html", to: "404.html" },
         { from: "site.webmanifest", to: "site.webmanifest" },
       ],
