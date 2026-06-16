@@ -1,6 +1,13 @@
 const apiUrl = "https://go-gin-hello-world-puce.vercel.app";
 // const apiUrl = "http://localhost:3000";
 
+const form = document.querySelector("#add-item-form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  await addItem();
+});
+
 async function addItem() {
   const url = `${apiUrl}/items`;
   const nameField = document.getElementById("item-name");
